@@ -22,6 +22,17 @@ jobs:
       - name: Lint with flake8
         run: |
           flake8 src/ --count --max-line-length=100 --statistics
+          - name: Lint with flake8
+        run: |
+          flake8 src/ --count --max-line-length=100 --statistics
+
+      - name: Run Unit Tests
+        run: |
+          python -m unittest discover -s tests
+
+      - name: Build Docker Container
+        run: |
+          docker build -t recon-engine:latest .
 
       - name: Build Docker Container
         run: |
